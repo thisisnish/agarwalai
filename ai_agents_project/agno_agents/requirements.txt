@@ -1,0 +1,9 @@
+agno
+duckduckgo-search
+lancedb
+tantivy
+pypdf
+numpy
+pandas
+pylance
+yfinance
