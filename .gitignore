@@ -7,4 +7,4 @@ source
 */tmp/
 agno_env
 tmp
-
+.venv
