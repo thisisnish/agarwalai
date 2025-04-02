@@ -2,8 +2,8 @@ A Smart customer support agent build using [agno](https://github.com/agno-agi/ag
 
 Concepts Used:
 - Agents
-- Workdlow
-- Dynamic Shots using Knowledge
+- Workflow
+- Knowledge (Dynamic Shots visa JSON) 
 
 Processes user query by:
 
