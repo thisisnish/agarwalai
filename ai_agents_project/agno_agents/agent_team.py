@@ -17,7 +17,9 @@ finance_agent = Agent(
     name="Finance Agent",
     role="Get financial data",
     model=OpenAIChat(id="gpt-4o-mini"),
-    tools=[YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)],
+    tools=[
+        YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
+    ],
     instructions="Use tables to display data",
     show_tool_calls=True,
     markdown=True,
@@ -31,4 +33,7 @@ agent_team = Agent(
     markdown=True,
 )
 
-agent_team.print_response("What's the market outlook and financial performance of AI semiconductor companies?", stream=True)
+agent_team.print_response(
+    "What's the market outlook and financial performance of AI semiconductor companies?",
+    stream=True,
+)

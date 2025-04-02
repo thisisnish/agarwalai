@@ -19,65 +19,70 @@ def is_player_x():
     global PLAYER_X
     return PLAYER_X
 
+
 def change_player(board):
     global PLAYER_X
     PLAYER_X = not PLAYER_X
 
+
 def is_horizontal_win(board):
-        for i in range(ROWS):
-            for player in [X, O]:
-                count = 0
-                for j in range(COLS):
-                    if board[i][j] == player:
-                        count += 1
-                    if count == 3:
-                        return player
-        return None
-    
-def is_vertical_win(board):
-        for i in range(ROWS):
-            for player in [X, O]:
-                count = 0
-                for j in range(COLS):
-                    if board[j][i] == player:
-                        count += 1
-                    if count == 3:
-                        return player
-        return None
-    
-def is_diagonaol_win(board):
+    for i in range(ROWS):
         for player in [X, O]:
             count = 0
-            for i in range(ROWS):
-                if board[i][i] == player:
-                    count += 1
-                if count == 3:
-                    return player
-
-            count = 0
-            for i in range(ROWS):
-                if board[i][COLS-1-i] == player:
-                    count += 1
-                if count == 3:
-                    return player
-
-        return None
-    
-def is_full(board):
-        full = True
-        for i in range(ROWS):
             for j in range(COLS):
-                if board[i][j] is EMPTY:
-                    full = False
-        return full
+                if board[i][j] == player:
+                    count += 1
+                if count == 3:
+                    return player
+    return None
+
+
+def is_vertical_win(board):
+    for i in range(ROWS):
+        for player in [X, O]:
+            count = 0
+            for j in range(COLS):
+                if board[j][i] == player:
+                    count += 1
+                if count == 3:
+                    return player
+    return None
+
+
+def is_diagonaol_win(board):
+    for player in [X, O]:
+        count = 0
+        for i in range(ROWS):
+            if board[i][i] == player:
+                count += 1
+            if count == 3:
+                return player
+
+        count = 0
+        for i in range(ROWS):
+            if board[i][COLS - 1 - i] == player:
+                count += 1
+            if count == 3:
+                return player
+
+    return None
+
+
+def is_full(board):
+    full = True
+    for i in range(ROWS):
+        for j in range(COLS):
+            if board[i][j] is EMPTY:
+                full = False
+    return full
+
 
 def initial_state():
     """
     Returns starting state of the board.
     """
-    return [[EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY]]
+    return [[EMPTY, EMPTY, EMPTY], [EMPTY, EMPTY, EMPTY], [EMPTY, EMPTY, EMPTY]]
+
 
 def player(board):
     """
@@ -85,12 +90,13 @@ def player(board):
     """
     return X if PLAYER_X else O
 
+
 def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
     actions = []
-    
+
     for i in range(ROWS):
         for j in range(COLS):
             if board[i][j]:
@@ -98,6 +104,7 @@ def actions(board):
             actions.append((i, j))
 
     return actions
+
 
 def result(board, action, player=None):
     """
@@ -113,6 +120,7 @@ def result(board, action, player=None):
     result_board[i][j] = player if player else X if PLAYER_X else O
     return result_board
 
+
 def winner(board):
     """
     Returns the winner of the game, if there is one.
@@ -120,11 +128,11 @@ def winner(board):
     winner_p = is_diagonaol_win(board)
     if winner_p:
         return winner_p
-    
+
     winner_p = is_horizontal_win(board)
     if winner_p:
         return winner_p
-    
+
     return is_vertical_win(board)
 
 
@@ -134,7 +142,7 @@ def terminal(board):
     """
     if winner(board) is not None:
         return True
-    
+
     return is_full(board)
 
 
@@ -163,6 +171,7 @@ def minValue(board):
 
     return v
 
+
 def maxValue(board):
     global PLAYER_X
     if terminal(board):
@@ -181,14 +190,18 @@ def minimax(board):
     """
     if terminal(board):
         return None
-    
+
     actionss = actions(board)
 
-    v = float("-inf") if is_player_x() else float('inf')
+    v = float("-inf") if is_player_x() else float("inf")
 
     move = actionss[0]
     for action in actionss:
-        new_v = max(v, minValue(result(board, action))) if is_player_x() else min(v, maxValue(result(board, action)))
+        new_v = (
+            max(v, minValue(result(board, action)))
+            if is_player_x()
+            else min(v, maxValue(result(board, action)))
+        )
         if (new_v > v and is_player_x()) or (new_v < v and not is_player_x()):
             move = action
             v = new_v
