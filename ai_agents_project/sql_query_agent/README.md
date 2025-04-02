@@ -75,3 +75,48 @@ Response:
     'orderAmount': 329.99
 }
 ```
+
+
+Query: "give me top three order by amount and their customer info"
+
+```
+{
+    'orderId': 'ORD006',
+    'productId': 'PROD1006',
+    'customer': {
+        'customerId': 'CUST5006',
+        'customerName': 'John Doe',
+        'customerEmail': 'john@example.com',
+        'customerPhone': '123-456-7890'
+    },
+    'orderDate': '2025-03-30 14:55:00',
+    'orderStatus': 'Shipped',
+    'orderAmount': 499.99
+}
+{
+    'orderId': 'ORD003',
+    'productId': 'PROD1003',
+    'customer': {
+        'customerId': 'CUST5003',
+        'customerName': 'Jane Smith',
+        'customerEmail': 'jane@example.com',
+        'customerPhone': '987-654-3210'
+    },
+    'orderDate': '2025-03-27 15:45:00',
+    'orderStatus': 'Delivered',
+    'orderAmount': 349.75
+}
+{
+    'orderId': 'ORD010',
+    'productId': 'PROD1010',
+    'customer': {
+        'customerId': 'CUST5010',
+        'customerName': 'Alice Johnson',
+        'customerEmail': 'alice@example.com',
+        'customerPhone': '555-678-1234'
+    },
+    'orderDate': '2025-04-03 13:35:00',
+    'orderStatus': 'Delivered',
+    'orderAmount': 329.99
+}
+```

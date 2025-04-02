@@ -13,10 +13,17 @@ from rich.console import Console
 console = Console()
 
 
+class Customer(BaseModel):
+    customerId: str
+    customerName: str
+    customerEmail: str
+    customerPhone: str
+
+
 class Order(BaseModel):
     orderId: str
     productId: str
-    customerId: str
+    customer: Customer
     orderDate: str
     orderStatus: str
     orderAmount: float
@@ -45,13 +52,16 @@ agent = Agent(
             3. run_sql_query, to run the SQL query
         
         Example:
-        input: "give me all orders from this month"
+        input: "show me all orders from this month"
         sql_query: "SELECT * FROM orders WHERE orderDate >= '2022-01-01' AND orderDate <= '2022-01-31'"
         output: "Here are all the orders from this month: ..."
         """
     ),
     show_tool_calls=True,
     markdown=True,
+    telemetry=True,
+    debug_mode=True,
+    monitoring=True,
 )
 
 
