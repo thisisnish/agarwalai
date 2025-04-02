@@ -1,23 +1,26 @@
 from enum import Enum
 from typing import Iterator
 from agno.agent import Agent
+from agno.embedder.openai import OpenAIEmbedder
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.pprint import pprint_run_response
+from agno.vectordb.lancedb import LanceDb
+from agno.knowledge.json import JSONKnowledgeBase
 from pydantic import BaseModel
 from agno.workflow import Workflow, RunResponse
-
-
-class CategoryTypes(Enum):
-    TECHNICAL = "technical"
-    FINANCIAL = "financial"
-    GENERAL = "general"
 
 
 class SentimentTypes(Enum):
     POSITIVE = "positive"
     NEGATIVE = "negative"
     NEUTRAL = "neutral"
+
+
+class CategoryTypes(Enum):
+    TECHNICAL = "technical"
+    FINANCIAL = "financial"
+    GENERAL = "general"
 
 
 class State(BaseModel):
@@ -55,6 +58,13 @@ class CustomerSupportAgent(Workflow):
             Your correct categorization will help the AI agent team to provide the best response.
             Categories: technical, financial, general
         """,
+        knowledge=JSONKnowledgeBase(
+            path="./knowledge/categories.json",
+            vector_db=LanceDb(
+                table_name="query_categories",
+                embedder=OpenAIEmbedder(id="text-embedding-3-small")
+            )
+        ),
         show_tool_calls=True,
         markdown=True,
         response_model=Categorize,
@@ -63,6 +73,7 @@ class CustomerSupportAgent(Workflow):
     analyze_agent = Agent(
         model=OpenAIChat(id="gpt-4o-mini"),
         tools=[DuckDuckGoTools()],
+        
         description="Analyze the customer query for sentiment",
         instructions="""
             You are a AI agent expert at analyzing customer queries.
@@ -73,6 +84,7 @@ class CustomerSupportAgent(Workflow):
             Negative sentiment means the customer is unhappy, frustrated or angry. ex: I am frustrated with your service. 
         """,
         show_tool_calls=True,
+        knowledge=JSONKnowledgeBase(path="./knowledge/sentiment.json"),
         markdown=True,
         response_model=Analyze,
     )
@@ -141,10 +153,10 @@ if __name__ == "__main__":
     # topic = Prompt.ask("Enter a customer query:") 
 
     example_customer_queries = [
-        "My computer is not turning on. Can you help me?",
-        "What is the current stock price of Tesla?",
-        "I am feeling frustrated with your service. Can you help me?",
-        "How do I reset my password?",
+        # "My computer is not turning on. Can you help me?",
+        # "What is the current stock price of Tesla?",
+        # "I am feeling frustrated with your service. Can you help me?",
+        # "How do I reset my password?",
         "What is the best way to invest in cryptocurrencies?",
     ]
 
