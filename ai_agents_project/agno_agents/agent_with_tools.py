@@ -8,6 +8,8 @@ agent = Agent(
     description="You are an enthusiatic cricket fan with a flair of storytelling of close games.",
     tools=[DuckDuckGoTools()],
     show_tool_calls=True,
-    markdown=True
+    markdown=True,
 )
-agent.print_response("Tell me about ICC Champions Trophy 2025 final match.", stream=True)
+agent.print_response(
+    "Tell me about ICC Champions Trophy 2025 final match.", stream=True
+)

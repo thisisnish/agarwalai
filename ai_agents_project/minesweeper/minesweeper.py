@@ -3,7 +3,7 @@ import random
 import copy
 
 
-class Minesweeper():
+class Minesweeper:
     """
     Minesweeper game representation
     """
@@ -85,7 +85,7 @@ class Minesweeper():
         return self.mines_found == self.mines
 
 
-class Sentence():
+class Sentence:
     """
     Logical statement about a Minesweeper game
     A sentence consists of a set of board cells,
@@ -136,7 +136,7 @@ class Sentence():
             self.cells.remove(cell)
 
 
-class MinesweeperAI():
+class MinesweeperAI:
     """
     Minesweeper game player
     """
@@ -190,6 +190,7 @@ class MinesweeperAI():
             5) add any new sentences to the AI's knowledge base
                if they can be inferred from existing knowledge
         """
+
         def get_neighbors():
             """
             Returns the set of neighboring cells of a given cell.
@@ -209,7 +210,7 @@ class MinesweeperAI():
                         else:
                             neighbors.add((i, j))
             return neighbors
-    
+
         def infer_new_sentences():
             """
             Infers new sentences based on the current knowledge.
@@ -217,16 +218,30 @@ class MinesweeperAI():
             curr_knowledge = copy.deepcopy(self.knowledge)
             for sentence1, sentence2 in itertools.combinations(curr_knowledge, 2):
                 if sentence1.cells.issubset(sentence2.cells):
-                    new_sentence = Sentence(sentence2.cells - sentence1.cells, sentence2.count - sentence1.count)
+                    new_sentence = Sentence(
+                        sentence2.cells - sentence1.cells,
+                        sentence2.count - sentence1.count,
+                    )
                 elif sentence2.cells.issubset(sentence1.cells):
-                    new_sentence = Sentence(sentence1.cells - sentence2.cells, sentence1.count - sentence2.count)
+                    new_sentence = Sentence(
+                        sentence1.cells - sentence2.cells,
+                        sentence1.count - sentence2.count,
+                    )
                 else:
                     continue
                 if new_sentence not in self.knowledge:
-                    self.knowledge.remove(sentence1) if sentence1 in self.knowledge else None
-                    self.knowledge.remove(sentence2) if sentence2 in self.knowledge else None
+                    (
+                        self.knowledge.remove(sentence1)
+                        if sentence1 in self.knowledge
+                        else None
+                    )
+                    (
+                        self.knowledge.remove(sentence2)
+                        if sentence2 in self.knowledge
+                        else None
+                    )
                     self.knowledge.append(new_sentence)
-            
+
             new_knowledge = copy.deepcopy(self.knowledge)
             for sentence in new_knowledge:
                 if len(sentence.cells) == 0:
@@ -270,7 +285,7 @@ class MinesweeperAI():
         total_cells = self.height * self.width
         random_moves = []
         count = 0
-        
+
         while count < total_cells:
             i = random.randrange(self.height)
             j = random.randrange(self.width)
@@ -284,4 +299,3 @@ class MinesweeperAI():
                 return move
             count += 1
         return None
-    
