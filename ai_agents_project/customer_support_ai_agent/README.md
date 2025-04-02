@@ -4,6 +4,9 @@ Concepts Used:
 - Agents
 - Workflow
 - Knowledge (Dynamic Shots visa JSON) 
+- Short Term Memory
+- Persistent Memory
+
 
 Processes user query by:
 
