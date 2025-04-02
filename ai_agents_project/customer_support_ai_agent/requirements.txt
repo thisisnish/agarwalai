@@ -1,3 +1,6 @@
 agno
 duckduckgo-search
 openai
+lancedb
+numpy
+pandas

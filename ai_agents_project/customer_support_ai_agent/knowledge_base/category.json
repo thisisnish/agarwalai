@@ -1,0 +1,17 @@
+{
+    "financial": [
+        "What is stock price of",
+        "Should invest in",
+        "What is the best way to invest in"
+    ],
+    "technical": [
+        "How do I reset my password?",
+        "My computer is not working.",
+        "My phone is not working.",
+        "My internet is not working."
+    ],
+    "general": [
+        "what offers do you have",
+        "what is the price of"
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "postive": [
+        "Thank you for your help.",
+        "I am happy with your service.",
+        "I am glad to have your support.",
+        "You helped me a lot."
+    ],
+    "negative": [
+        "I am frustrated with your service.",
+        "I am unhappy with your response.",
+        "I am disappointed with your service."
+    ],
+    "neutral": [
+        "What is the current stock price of Tesla?",
+        "How do I reset my password?",
+        "What is the best way to invest in cryptocurrencies?",
+        "My computer is not working."
+    ]
+}
