@@ -24,5 +24,4 @@
 
 > Response: Absolutely! I'll look up the latest market trends for you. Please hold on a moment.
 
-> the software name and any error messages you receive? This will help me assist you better.
 
