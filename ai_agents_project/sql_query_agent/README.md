@@ -26,7 +26,7 @@ Query Generation:   1.5s
 Database Call:      4.03s
 ```
 
-### Cost Estimation (model=cgatgpt-4o-mini)
+### Cost Estimation (model=chatgpt-4o-mini)
 
 ```
 Single Table:
@@ -35,7 +35,7 @@ Task                Input Token     Input Cost      Output Token        OutputCo
 
 Query Generation:   511             $.0075          31                  $.0001          
 Database Call:      738             $.001           161                 $.001
-                                                                                        $.001
+                                                                                        $.001/query
 
 
 Table Join:
@@ -43,5 +43,5 @@ Task                Input Token     Input Cost      Output Token        OutputCo
 
 Query Generation:   574             $.008           31                  $.0001          
 Database Call:      800             $.001           240                 $.001
-                                                                                        $.0012
+                                                                                        $.0012/query
 ```
