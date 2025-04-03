@@ -15,6 +15,9 @@
 ### Performance Estimates
 
 ```
+Database: SqlLite
+Scan: Full Table (10 rows)
+
 Single Table:
 
 Query Generation:   1.75s
@@ -23,7 +26,7 @@ Database Call:      2.7s
 Table Join:
 
 Query Generation:   1.5s
-Database Call:      4.03s
+Database Call:      3.5s
 ```
 
 ### Cost Estimation (model=chatgpt-4o-mini)
@@ -35,7 +38,7 @@ Task                Input Token     Input Cost      Output Token        OutputCo
 
 Query Generation:   511             $.0075          31                  $.0001          
 Database Call:      738             $.001           161                 $.001
-                                                                                        $.001/query
+                                                                                        $.002/query
 
 
 Table Join:
@@ -43,5 +46,5 @@ Task                Input Token     Input Cost      Output Token        OutputCo
 
 Query Generation:   574             $.008           31                  $.0001          
 Database Call:      800             $.001           240                 $.001
-                                                                                        $.0012/query
+                                                                                        $.0021/query
 ```
