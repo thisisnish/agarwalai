@@ -1,0 +1,9 @@
+agno
+openai
+elasticsearch
+pymongo
+lancedb
+numpy
+sqlalchemy
+langchain
+certifi
