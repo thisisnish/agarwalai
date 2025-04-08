@@ -1,0 +1,28 @@
+research_task:
+  description: >
+    Provide a list of most relevant information on {query}.
+    Your content should be in the form of a list with max 10 bullet points.
+    When the issue is identified you should provide step-by-step instructions to
+    resolve the issue.
+
+    Your content should:
+    1. begin with a brief summary of the issue
+    2. provide a list of max 10 bullet points with the most relevant information
+    3. provide step-by-step instructions to resolve the issue
+    4. provide a list of helpful Youtube videos
+  expected_output: >
+    A list with max 10 bullet points of the most relevant information about {query}.
+    A step-by-step guide to resolve the issue.
+    A list of helpful Youtube videos.
+  agent: researcher
+
+text_extraction_task:
+  agent: image_text_extractor
+  description: >
+    Download and extract text from the provided {image_url} file. Ensure that the extracted text is accurate and complete,
+    and ready for any further analysis or processing tasks. The image file provided may contain
+    various text elements, so it's crucial to capture all readable text.
+  expected_output: >
+    A report containing the full text extracted from the image.
+    A summary of the content provided.
+    A list of possible queries based on the content.
