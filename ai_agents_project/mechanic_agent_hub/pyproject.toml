@@ -1,0 +1,21 @@
+[project]
+name = "mechanic_agent_hub"
+version = "0.1.0"
+description = "mechanic_agent_hub using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.108.0,<1.0.0",
+    "openai"
+]
+
+[project.scripts]
+kickoff = "mechanic_agent_hub.main:kickoff"
+plot = "mechanic_agent_hub.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"

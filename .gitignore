@@ -8,3 +8,4 @@ source
 agno_env
 tmp
 .venv
+.env
