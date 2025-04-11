@@ -1,0 +1,7 @@
+agno
+openai
+py-trello
+mcp
+asyncio
+fastapi
+pydantic-settings
